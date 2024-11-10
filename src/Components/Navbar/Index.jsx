@@ -97,34 +97,34 @@ const Navbar = () => {
           </div>
           {accountDropDown && (
             <div
-              className="absolute right-0 bottom-[-250px] py-4 rounded-[4px] backdrop-blur-[150px] flex flex-col gap-y-[10px]"
-              style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+              className="absolute right-0 bottom-[-250px] py-4 rounded-[4px] backdrop-blur-[150px] flex flex-col gap-y-[10px] z-10"
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.04)" }}
             >
-              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5 transition-all">
                 <FiUser size={"24px"} stroke="#fafafa" />
                 <p className="font-popins text-[14px] text-textWhite">
                   Manage My Account
                 </p>
               </div>
-              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5 transition-all">
                 <FiShoppingBag size={"24px"} stroke="#fafafa" />
                 <p className="font-popins text-[14px] text-textWhite">
                   My Order
                 </p>
               </div>
-              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5 transition-all">
                 <MdOutlineCancel size={"24px"} fill="#fafafa" />
                 <p className="font-popins text-[14px] text-textWhite">
                   My Cancellations
                 </p>
               </div>
-              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5 transition-all">
                 <FaRegStar size={"24px"} fill="#fafafa" />
                 <p className="font-popins text-[14px] text-textWhite">
                   My Reviews
                 </p>
               </div>
-              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5 transition-all">
                 <SlLogout size={"24px"} fill="#fafafa" />
                 <p className="font-popins text-[14px] text-textWhite">Logout</p>
               </div>
