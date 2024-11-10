@@ -26,3 +26,53 @@
   --popins: "Poppins", sans-serif;
   --inter: "Inter", sans-serif;
 }
+
+@layer components {
+  /* navItem hover css */
+  .navItemHover {
+    position: relative;
+  }
+  .navItemHover::before {
+    position: absolute;
+    content: "";
+    width: 0%;
+    height: 1px;
+    background: var(--primaryBlack);
+    bottom: 0;
+    transition: ease-in-out.2s;
+    -webkit-transition: ease-in-out.2s;
+    -moz-transition: ease-in-out.2s;
+    -ms-transition: ease-in-out.2s;
+    -o-transition: ease-in-out.2s;
+  }
+
+  .navItemHover:hover::before {
+    width: 100%;
+  }
+  .navitemActive::before {
+    width: 100%;
+  }
+  /* menus icon hover custom  css  */
+  .menuIcon {
+    transition: ease-in-out.2s;
+    -webkit-transition: ease-in-out.2s;
+    -moz-transition: ease-in-out.2s;
+    -ms-transition: ease-in-out.2s;
+    -o-transition: ease-in-out.2s;
+    height: 34px;
+    width: 34px;
+    background: var(--primaryWhite);
+    cursor: pointer;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+  }
+  .menuIcon:hover {
+    height: 34px;
+    width: 34px;
+    background: var(--primaryRed);
+    color: var(--primaryWhite);
+  }
+}
