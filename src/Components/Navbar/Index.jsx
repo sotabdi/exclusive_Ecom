@@ -1,35 +1,42 @@
 import { NavLink } from "react-router-dom";
-import { FiSearch, FiUser } from "react-icons/fi";
+import { FiSearch, FiUser, FiShoppingBag } from "react-icons/fi";
 import { GrFavorite } from "react-icons/gr";
 import { IoCartOutline } from "react-icons/io5";
+import { MdOutlineCancel } from "react-icons/md";
+import { FaRegStar } from "react-icons/fa";
+import { SlLogout } from "react-icons/sl";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [accountDropDown, setaccountDropDown] = useState(false);
+
   const menuItem = [
     {
       id: 1,
       Item: "Home",
-      to:''
+      to: "",
     },
     {
-      id: 1,
+      id: 2,
       Item: "Contact",
-      to:'Contact'
+      to: "Contact",
     },
     {
-      id: 1,
+      id: 3,
       Item: "About",
-      to:'About'
+      to: "About",
     },
     {
-      id: 1,
+      id: 4,
       Item: "Sign Up",
-      to:'SignUp'
+      to: "SignUp",
     },
   ];
+
   return (
     <div className="pt-10 pb-4 border-b border-b-black30">
       <div className="container">
-        <div className="grid grid-cols-12 items-center">
+        <div className="grid grid-cols-12 items-center relative">
           <div className="col-span-2">
             <h1 className="font-inter font-bold text-[24px] text-primaryBlack cursor-pointer">
               Exclusive
@@ -58,16 +65,6 @@ const Navbar = () => {
             </nav>
           </div>
           <div className="col-start-8 col-span-5">
-            {/* <div className="relative">
-              <input
-                type="text"
-                placeholder="What are you looking for?"
-                className="py-[10px] ps-5 pe-[70px] bg-secondaryWhite rounded-[4px] font-popins text-[12px] text-primaryBlack placeholder:opacity-70"
-              />
-              <div className="absolute top-[50%] right-[65%] translate-y-[-50%] cursor-pointer">
-                <FiSearch />
-              </div>
-            </div> */}
             <div className="grid grid-cols-10 items-center">
               <input
                 type="text"
@@ -89,12 +86,50 @@ const Navbar = () => {
                     0
                   </p>
                 </div>
-                <div className="flex justify-center items-center menuIcon">
+                <div
+                  className="flex justify-center items-center menuIcon"
+                  onClick={() => setaccountDropDown(!accountDropDown)}
+                >
                   <FiUser size={"24px"} />
                 </div>
               </div>
             </div>
           </div>
+          {accountDropDown && (
+            <div
+              className="absolute right-0 bottom-[-250px] py-4 rounded-[4px] backdrop-blur-[150px] flex flex-col gap-y-[10px]"
+              style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+            >
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+                <FiUser size={"24px"} stroke="#fafafa" />
+                <p className="font-popins text-[14px] text-textWhite">
+                  Manage My Account
+                </p>
+              </div>
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+                <FiShoppingBag size={"24px"} stroke="#fafafa" />
+                <p className="font-popins text-[14px] text-textWhite">
+                  My Order
+                </p>
+              </div>
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+                <MdOutlineCancel size={"24px"} fill="#fafafa" />
+                <p className="font-popins text-[14px] text-textWhite">
+                  My Cancellations
+                </p>
+              </div>
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+                <FaRegStar size={"24px"} fill="#fafafa" />
+                <p className="font-popins text-[14px] text-textWhite">
+                  My Reviews
+                </p>
+              </div>
+              <div className="flex gap-x-4 cursor-pointer hover:bg-black py-[5px] px-5">
+                <SlLogout size={"24px"} fill="#fafafa" />
+                <p className="font-popins text-[14px] text-textWhite">Logout</p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
