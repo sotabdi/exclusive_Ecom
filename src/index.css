@@ -76,3 +76,14 @@
     color: var(--primaryWhite);
   }
 }
+
+/* banner dot active css */
+.slick-dots ul li.slick-active div {
+  background: var(--primaryRed) !important;
+  width: 14px !important;
+  height: 14px !important;
+  border: 2px solid var(--primaryWhite);
+}
+.slick-dots ul li {
+  margin: 2px;
+}

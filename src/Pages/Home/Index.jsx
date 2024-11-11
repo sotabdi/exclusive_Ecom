@@ -6,7 +6,7 @@ const Home = () => {
   return (
     <div className="container">
       <div className="grid grid-cols-12 items-center">
-        <div className="col-start-1 col-end-3">
+        <div className="col-start-1 col-end-3 pt-10">
           <Catagory />
         </div>
         <div className="col-start-3 col-end-13 border-s border-s-black30 ps-[45px] pt-10">
