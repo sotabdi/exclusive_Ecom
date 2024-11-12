@@ -1,6 +1,6 @@
-import React from "react";
 import Catagory from "../../Components/HomeComponents/Catagory/Index";
 import Banner from "../../Components/HomeComponents/Banner/Index";
+import FlashSale from "../../Components/HomeComponents/FlashSale/Index";
 
 const Home = () => {
   return (
@@ -12,6 +12,9 @@ const Home = () => {
         <div className="col-start-3 col-end-13 border-s border-s-black30 ps-[45px] pt-10">
           <Banner />
         </div>
+      </div>
+      <div className="pt-[140px] pb-[60px]">
+        <FlashSale />
       </div>
     </div>
   );
