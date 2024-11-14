@@ -10,10 +10,11 @@ const Timer = () => {
     w.onmessage = (e)=>{
         settimer(e.data)
     }
-    
-  },[timer]);
 
-  console.log(timer);
+    return () => { // clearing when components will unmount
+      w.terminate();
+    };
+  },[]);
   
 
   const formatDate = (milisec) => {
@@ -23,7 +24,7 @@ const Timer = () => {
     let days = parseInt(Math.floor(total_Hours / 24));
     let second = parseInt(Math.floor(total_second % 60));
     let minutes = parseInt(Math.floor(total_minutes % 60));
-    let hours = parseInt(Math.floor(total_Hours % 60));
+    let hours = parseInt(Math.floor(total_Hours % 24));
     return { days, hours, minutes, second };
   };
 
@@ -37,7 +38,7 @@ const Timer = () => {
         </p>
         <div className="flex gap-x-4 items-center">
           <h6 className="font-inter font-bold text-[32px] text-primaryBlack">
-            03
+            {days<=10 ? (`0${days}`): (days)}
           </h6>
           <div>
             <RxDotFilled color="var(--primaryRed)" size={"14px"} />
@@ -51,7 +52,7 @@ const Timer = () => {
         </p>
         <div className="flex gap-x-4 items-center">
           <h6 className="font-inter font-bold text-[32px] text-primaryBlack">
-            23
+            {hours}
           </h6>
           <div>
             <RxDotFilled color="var(--primaryRed)" size={"14px"} />
@@ -65,7 +66,7 @@ const Timer = () => {
         </p>
         <div className="flex gap-x-4 items-center">
           <h6 className="font-inter font-bold text-[32px] text-primaryBlack">
-            19
+            {minutes}
           </h6>
           <div>
             <RxDotFilled color="var(--primaryRed)" size={"14px"} />
@@ -79,7 +80,7 @@ const Timer = () => {
         </p>
         <div className="flex gap-x-4 items-center">
           <h6 className="font-inter font-bold text-[32px] text-primaryBlack">
-            56
+            {second}
           </h6>
         </div>
       </div>
