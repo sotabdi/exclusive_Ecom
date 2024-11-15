@@ -10,7 +10,7 @@ const ProductCard = ({ Options = {} }) => {
 
   const { price = true, colorOptions = false, discountBar = true } = Options; // default settings
   return (
-    <div className="w-full flex flex-col gap-y-4 cursor-pointer group">
+    <div className="w-full flex flex-col gap-y-4 cursor-pointer group px-[15px] pb-[60px] pt-[40px]">
       <div className="w-full h-[250px] bg-secondaryWhite rounded flex justify-center items-center relative overflow-hidden">
         <div className="flex justify-between items-start p-3 absolute top-0 left-0 w-full">
           {discountBar ? (
@@ -39,7 +39,9 @@ const ProductCard = ({ Options = {} }) => {
           </picture>
         </div>
         <div className="w-full bg-black text-center py-2 absolute bottom-[-40px] left-0 transition-all duration-300 hover:bg-primaryRed group-hover:bottom-0">
-          <h4 className="text-primaryWhite font-popins font-medium text-[16px]">Add To Cart</h4>
+          <h4 className="text-primaryWhite font-popins font-medium text-[16px]">
+            Add To Cart
+          </h4>
         </div>
       </div>
       <div className="flex flex-col gap-y-2">

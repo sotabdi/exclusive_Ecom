@@ -1,25 +1,71 @@
-import React from "react";
-import { allCatagrory } from "../../../../Data/Data";
-import { IoChevronForward } from "react-icons/io5";
+import CatagoryItem from "../../CommonComponents/CatagoryItem/Index";
+import ProductLayout from "../../CommonComponents/ProductLayout/Index";
+import { CiMobile4 } from "react-icons/ci";
 
 const Catagory = () => {
+  const catagoryBrowse = [
+    {
+      id: 1,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 2,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 3,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 4,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 5,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 6,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 7,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 8,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 9,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+    {
+      id: 10,
+      title: "Phone",
+      icon: <CiMobile4 />,
+    },
+  ];
   return (
-    <div>
-      <ul className="flex flex-col gap-y-2">
-        {allCatagrory?.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-center justify-between cursor-pointer text-primaryBlack hover:ps-3 hover:bg-primaryBlack hover:text-primaryWhite transition-all py-[10px]"
-          >
-            <li className="font-popins text-[16px]">{item.title}</li>
-            {item.subCatagory && (
-              <div className="me-9">
-                <IoChevronForward size={"24px"} />
-              </div>
-            )}
-          </div>
-        ))}
-      </ul>
+    <div className="w-full">
+      <ProductLayout
+        Options={{
+          title: "Categories",
+          header: "Categories",
+          ContentPlaceHolder: CatagoryItem,
+          col: 6,
+          contentData: catagoryBrowse,
+        }}
+      />
     </div>
   );
 };

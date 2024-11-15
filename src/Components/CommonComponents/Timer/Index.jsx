@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { RxDotFilled } from "react-icons/rx";
 
-const Timer = () => {
-  const [timer, settimer] = useState(3 * 24 * 60 * 60 * 1000);
+const Timer = ({offerTime}) => {
+  const [timer, settimer] = useState(offerTime * 24 * 60 * 60 * 1000);
 
   useEffect(() => {
     const w = new Worker(new URL("../../../Workers/CountDown.js", import.meta.url));
