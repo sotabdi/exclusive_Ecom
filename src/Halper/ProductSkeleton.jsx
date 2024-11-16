@@ -1,6 +1,6 @@
 const ProductSkeleton = () => {
   return (
-    <div className="w-full flex flex-col gap-y-4 cursor-pointer animate-pulse">
+    <div className="w-full flex flex-col gap-y-4 cursor-pointer animate-pulse pt-[60px]">
       <div className="w-full h-[250px] bg-gray-200 rounded flex px-[15px] pb-[60px] pt-[40px] justify-center items-center relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full flex justify-between items-start p-3">
           <span className="inline-block w-12 h-5 bg-gray-300 rounded"></span>

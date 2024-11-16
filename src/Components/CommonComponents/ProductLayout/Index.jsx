@@ -15,11 +15,11 @@ const ProductLayout = ({ Options = {} }) => {
     isArrow = false,
     isbutton = true,
     buttonText = "ex:todo",
-    isLoading = true,
+    isLoading = false,
     contentData = [],
     row = 1,
     col = 4,
-    slideBy = col-2,
+    slideBy = col - 2,
   } = Options;
 
   const sliderRef = useRef(null);
@@ -30,7 +30,7 @@ const ProductLayout = ({ Options = {} }) => {
     slidesToShow: col,
     slidesToScroll: slideBy,
     rows: row,
-    autoplay: false
+    autoplay: false,
   };
 
   const prev = () => {
@@ -50,13 +50,13 @@ const ProductLayout = ({ Options = {} }) => {
         {(isArrow && (
           <div className="flex items-center gap-x-2">
             <div
-              className="flex justify-center items-center w-[46px] h-[46px] rounded-full bg-secondaryWhite cursor-pointer"
+              className="flex justify-center items-center w-[46px] h-[46px] rounded-full bg-secondaryWhite cursor-pointer hover:bg-primaryBlack hover:text-primaryWhite transition-all"
               onClick={prev}
             >
               <HiArrowSmallLeft size={"24px"} />
             </div>
             <div
-              className="flex justify-center items-center w-[46px] h-[46px] rounded-full bg-secondaryWhite cursor-pointer"
+              className="flex justify-center items-center w-[46px] h-[46px] rounded-full bg-secondaryWhite cursor-pointer hover:bg-primaryBlack hover:text-primaryWhite transition-all"
               onClick={next}
             >
               <HiArrowSmallRight size={"24px"} />
@@ -71,19 +71,19 @@ const ProductLayout = ({ Options = {} }) => {
       </div>
       <div className="slider-container custom_slider">
         <Slider ref={sliderRef} {...settings}>
-          {[...new Array(10)].map((_, index) => (
-          <div key={index}>{<ContentPlaceHolder />}</div>
-          ))}
-          {/* {isLoading
-            ? [...new Array(10)].map((_, index) => (
-                <div key={index}>{<ProductSkeleton />}</div>
-              ))
-            : contentData?.map((item) => (
-                <div key={item.id}>{<ContentPlaceHolder />}</div>
-              ))} */}
+          {(isLoading &&
+            [...new Array(10)].map((_, index) => (
+              <div key={index}>{<ProductSkeleton />}</div>
+            ))) ||
+            (contentData &&
+              contentData?.map((item) => (
+                <div key={item.id}>
+                  {<ContentPlaceHolder data={item ? item : {}} />}
+                </div>
+              )))}
         </Slider>
       </div>
-      {isArrow && (
+      {isbutton && (
         <div className="flex justify-center items-center">
           <button className="px-12 py-4 bg-primaryRed text-primaryWhite font-popins font-medium text-[16px] hover:bg-secondaryRed transition-all rounded">
             View All Products

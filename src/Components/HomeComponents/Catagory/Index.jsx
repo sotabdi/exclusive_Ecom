@@ -56,7 +56,7 @@ const Catagory = () => {
     },
   ];
   return (
-    <div className="w-full">
+    <div className="w-full border-b border-b-black30">
       <ProductLayout
         Options={{
           title: "Categories",
@@ -64,6 +64,8 @@ const Catagory = () => {
           ContentPlaceHolder: CatagoryItem,
           col: 6,
           contentData: catagoryBrowse,
+          isArrow: true,
+          isbutton: false,
         }}
       />
     </div>

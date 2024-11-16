@@ -3,19 +3,20 @@ import { IoEyeOutline } from "react-icons/io5";
 import productImg from "../../../assets/Products/product1.png";
 import { FaStar } from "react-icons/fa6";
 
-const ProductCard = ({ Options = {} }) => {
+const ProductCard = ({ Options = {} , data = {} }) => {
   // expect Options object to customize prodcut card options ex: price / color option  / discount bar / if it's needed or not
 
   //   <ProductCard Options={{price: true, colorOptions: false, discountBar: true}} /> expected impimentation
 
   const { price = true, colorOptions = false, discountBar = true } = Options; // default settings
+  
   return (
     <div className="w-full flex flex-col gap-y-4 cursor-pointer group px-[15px] pb-[60px] pt-[40px]">
       <div className="w-full h-[250px] bg-secondaryWhite rounded flex justify-center items-center relative overflow-hidden">
         <div className="flex justify-between items-start p-3 absolute top-0 left-0 w-full">
           {discountBar ? (
             <span className="inline-block bg-primaryRed text-primaryWhite font-popins text-[12px] py-1 px-3 rounded">
-              -40%
+              {`-${data?.discountPercentage}%`}
             </span>
           ) : (
             <div></div>
@@ -32,8 +33,8 @@ const ProductCard = ({ Options = {} }) => {
         <div>
           <picture>
             <img
-              src={productImg}
-              alt={productImg}
+              src={data?.thumbnail}
+              alt={data?.thumbnail}
               className="w-full object-contain"
             />
           </picture>
@@ -46,15 +47,15 @@ const ProductCard = ({ Options = {} }) => {
       </div>
       <div className="flex flex-col gap-y-2">
         <h3 className="font-popins text-[16px] font-medium text-primaryBlack">
-          HAVIT HV-G92 Gamepad
+          {data?.title}
         </h3>
         {price && (
           <div className="flex">
             <p className="font-popins text-[16px] font-medium text-primaryRed">
-              $120
+              ${(data?.price-(data?.price/100*data?.discountPercentage)).toFixed(2)}
             </p>
             <p className="font-popins text-[16px] font-medium text-primaryBlack opacity-50 line-through px-3">
-              $120
+            ${data?.price}
             </p>
           </div>
         )}
@@ -67,7 +68,7 @@ const ProductCard = ({ Options = {} }) => {
             ))}
           </div>
           <p className="font-popins font-semibold text-[14px] text-primaryBlack opacity-50">
-            (100)
+            ({data.reviews.length})
           </p>
         </div>
         {colorOptions && (
