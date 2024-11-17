@@ -1,6 +1,9 @@
 import CatagoryItem from "../../CommonComponents/CatagoryItem/Index";
 import ProductLayout from "../../CommonComponents/ProductLayout/Index";
 import { CiMobile4 } from "react-icons/ci";
+import { PiMonitor ,PiGameControllerLight } from "react-icons/pi";
+import { IoWatchOutline } from "react-icons/io5";
+import { MdOutlineHeadphones } from "react-icons/md";
 
 const Catagory = () => {
   const catagoryBrowse = [
@@ -11,23 +14,23 @@ const Catagory = () => {
     },
     {
       id: 2,
-      title: "Phone",
-      icon: <CiMobile4 />,
+      title: "Computer",
+      icon: <PiMonitor />,
     },
     {
       id: 3,
-      title: "Phone",
-      icon: <CiMobile4 />,
+      title: "Samrt Watch",
+      icon: <IoWatchOutline />,
     },
     {
       id: 4,
-      title: "Phone",
-      icon: <CiMobile4 />,
+      title: "Headphones",
+      icon: <MdOutlineHeadphones />,
     },
     {
       id: 5,
-      title: "Phone",
-      icon: <CiMobile4 />,
+      title: "Gaming",
+      icon: <PiGameControllerLight />,
     },
     {
       id: 6,
@@ -56,7 +59,7 @@ const Catagory = () => {
     },
   ];
   return (
-    <div className="w-full border-b border-b-black30">
+    <div className="w-full border-b border-b-black30 pb-[70px]">
       <ProductLayout
         Options={{
           title: "Categories",

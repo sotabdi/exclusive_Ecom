@@ -20,6 +20,7 @@ const ProductLayout = ({ Options = {} }) => {
     row = 1,
     col = 4,
     slideBy = col - 2,
+    discountBar= true,
   } = Options;
 
   const sliderRef = useRef(null);
@@ -41,7 +42,7 @@ const ProductLayout = ({ Options = {} }) => {
     sliderRef.current.slickNext();
   };
   return (
-    <div className="flex flex-col pb-[60px]">
+    <div className="flex flex-col">
       <div className="flex justify-between items-end">
         <div className="flex items-end gap-x-[87px]">
           <TitleHead title={title} header={header} />
@@ -63,7 +64,7 @@ const ProductLayout = ({ Options = {} }) => {
             </div>
           </div>
         )) ||
-          (isbutton && (
+          (!isArrow && (
             <button className="text-[16px] font-popins font-medium text-primaryWhite bg-primaryRed px-12 py-4 rounded hover:bg-secondaryRed transition-all">
               {buttonText}
             </button>
@@ -77,8 +78,8 @@ const ProductLayout = ({ Options = {} }) => {
             ))) ||
             (contentData &&
               contentData?.map((item) => (
-                <div key={item.id}>
-                  {<ContentPlaceHolder data={item ? item : {}} />}
+                <div key={item?.id}>
+                  {<ContentPlaceHolder data={item ? item : {}} Options={{discountBar: discountBar}}/>}
                 </div>
               )))}
         </Slider>

@@ -1,5 +1,6 @@
 import CatagoryList from "../../Components/CommonComponents/CatagoryList/Index";
 import Banner from "../../Components/HomeComponents/Banner/Index";
+import BestSellings from "../../Components/HomeComponents/BestSellings/Index";
 import Catagory from "../../Components/HomeComponents/Catagory/Index";
 import FlashSale from "../../Components/HomeComponents/FlashSale/Index";
 
@@ -19,6 +20,9 @@ const Home = () => {
       </div>
       <div>
         <Catagory/>
+      </div>
+      <div>
+        <BestSellings/>
       </div>
     </div>
   );

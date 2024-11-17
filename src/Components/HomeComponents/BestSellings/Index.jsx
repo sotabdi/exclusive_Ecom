@@ -1,26 +1,28 @@
+import React from "react";
 import ProductLayout from "../../CommonComponents/ProductLayout/Index";
 import ProductCard from "../../CommonComponents/ProductCard/Index";
 import { useGetAllProductQuery } from "../../../Features/Api/ProductApi";
-const FlashSale = () => {
-  const { data, error, isLoading } = useGetAllProductQuery();
-  console.log(data);
 
+
+const BestSellings = () => {
+    const { data, error, isLoading } = useGetAllProductQuery();
   return (
-    <div className=" border-b border-b-black30 pb-[60px]">
+    <div className="pt-[70px]">
       <ProductLayout
         Options={{
+          title: "This Month",
+          header: "Best Selling Products",
+          isbutton: false,
+          isArrow: false,
           ContentPlaceHolder: ProductCard,
-          timeStamp: true,
-          offerTime: 3,
-          title: "Todays",
-          header: "Flash Sales",
-          isArrow: true,
           contentData: data?.products,
           isLoading,
+          buttonText: "View All",
+          discountBar: false,
         }}
       />
     </div>
   );
 };
 
-export default FlashSale;
+export default BestSellings;
