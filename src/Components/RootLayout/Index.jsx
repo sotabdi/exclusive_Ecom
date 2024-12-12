@@ -1,6 +1,7 @@
+import Home from '../../Pages/Home/Index';
+import Footer from "../Footer/Index";
 import Header from "../Header/Index";
-import Navbar from "../Navbar/Index"
-import Home from '../../Pages/Home/Index'
+import Navbar from "../Navbar/Index";
 
 const RootLayout = () => {
   return (
@@ -8,6 +9,7 @@ const RootLayout = () => {
       <Header />
       <Navbar />
       <Home/>
+      <Footer/>
     </div>
   );
 };

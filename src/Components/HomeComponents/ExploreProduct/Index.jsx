@@ -1,25 +1,24 @@
 import { useGetAllProductQuery } from "../../../Features/Api/ProductApi";
 import ProductCard from "../../CommonComponents/ProductCard/Index";
 import ProductLayout from "../../CommonComponents/ProductLayout/Index";
-const FlashSale = () => {
-  const { data, error, isLoading } = useGetAllProductQuery();
 
+const ExploreProduct = () => {
+    const { data, error, isLoading } = useGetAllProductQuery();
   return (
-    <div className=" border-b border-b-black30 pt-[140px] pb-[120px]">
-      <ProductLayout
-        Options={{
+    <div className="pb-[168px]">
+        <ProductLayout Options={{
           ContentPlaceHolder: ProductCard,
-          timeStamp: true,
+          timeStamp: false,
           offerTime: 3,
-          title: "Todays",
-          header: "Flash Sales",
+          title: "Our Products",
+          header: "Explore Our Products",
           isArrow: true,
           contentData: data?.products,
           isLoading,
-        }}
-      />
+          row:2
+        }}/>
     </div>
-  );
-};
+  )
+}
 
-export default FlashSale;
+export default ExploreProduct

@@ -2,7 +2,11 @@ import CatagoryList from "../../Components/CommonComponents/CatagoryList/Index";
 import Banner from "../../Components/HomeComponents/Banner/Index";
 import BestSellings from "../../Components/HomeComponents/BestSellings/Index";
 import Catagory from "../../Components/HomeComponents/Catagory/Index";
+import ExploreProduct from "../../Components/HomeComponents/ExploreProduct/Index";
 import FlashSale from "../../Components/HomeComponents/FlashSale/Index";
+import NewArriVal from "../../Components/HomeComponents/NewArrival/Index";
+import PromoBanner from "../../Components/HomeComponents/PromoBanner/Index";
+import Support from "../../Components/HomeComponents/Support/Index";
 
 const Home = () => {
   return (
@@ -15,15 +19,13 @@ const Home = () => {
           <Banner />
         </div>
       </div>
-      <div className="pt-[140px] pb-[60px]">
-        <FlashSale />
-      </div>
-      <div>
-        <Catagory/>
-      </div>
-      <div>
-        <BestSellings/>
-      </div>
+      <FlashSale />
+      <Catagory />
+      <BestSellings />
+      <PromoBanner />
+      <ExploreProduct />
+      <NewArriVal/>
+      <Support/>
     </div>
   );
 };
