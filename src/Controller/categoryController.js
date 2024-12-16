@@ -5,6 +5,8 @@ const {
 } = require("../utilities/cloudinary");
 const categoryModel = require("../model/category.model");
 
+//
+// create a new Category
 const categoryController = async (req, res) => {
   try {
     const { name } = req.body;
@@ -37,6 +39,8 @@ const categoryController = async (req, res) => {
   }
 };
 
+//
+// get all category
 const getCategoryController = async (_, res) => {
   try {
     const allCategory = await categoryModel.find();
@@ -56,6 +60,8 @@ const getCategoryController = async (_, res) => {
   }
 };
 
+//
+// update a category
 const updateCategoryController = async (req, res) => {
   try {
     const { id } = req.params;
@@ -121,8 +127,81 @@ const updateCategoryController = async (req, res) => {
       );
   }
 };
+
+//
+// get single category
+const getSingleCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const findResult = await categoryModel.findById(id);
+
+    if (!findResult) {
+      return res
+        .status(400)
+        .json(
+          new Response(
+            401,
+            "can not find requested product in database",
+            null,
+            null
+          )
+        );
+    }
+    return res
+      .status(200)
+      .json(new Response(200, "here you go", findResult, null));
+  } catch (error) {
+    return res
+      .status(500)
+      .json(
+        new Response(500, `getoneCategoryController: ${error}`, null, null)
+      );
+  }
+};
+
+//
+// delete a category
+const deleteCategoryController = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deleteResult = await categoryModel.findByIdAndDelete(id);
+
+    if (!deleteResult) {
+      return res
+        .status(400)
+        .json(
+          new Response(
+            401,
+            "can not find requested product in database",
+            null,
+            null
+          )
+        );
+    }
+
+    // delete image from cloudinary
+    const { icon } = deleteResult;
+    const iconUrl = icon?.split("/");
+    const iconId = iconUrl[iconUrl?.length - 1].split(".").shift();
+
+    await deleteCloudinary(iconId);
+    return res
+      .status(200)
+      .json(new Response(200, "delete successfully", deleteResult, null));
+  } catch (error) {
+    return res
+      .status(500)
+      .json(
+        new Response(500, `deleteCategorycontroller: ${error}`, null, null)
+      );
+  }
+};
 module.exports = {
   categoryController,
   getCategoryController,
   updateCategoryController,
+  getSingleCategory,
+  deleteCategoryController,
 };
