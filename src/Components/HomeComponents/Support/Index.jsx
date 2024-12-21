@@ -9,13 +9,13 @@ const Support = () => {
       title: "Free delivery for all orders over $140",
     },
     {
-      id: 1,
+      id: 2,
       icon: <TbTruckDelivery />,
       header: "FREE AND FAST DELIVERY",
       title: "Free delivery for all orders over $140",
     },
     {
-      id: 1,
+      id: 3,
       icon: <TbTruckDelivery />,
       header: "FREE AND FAST DELIVERY",
       title: "Free delivery for all orders over $140",
