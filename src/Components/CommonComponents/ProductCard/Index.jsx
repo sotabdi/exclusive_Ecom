@@ -1,6 +1,5 @@
 import { IoMdHeartEmpty } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
-import productImg from "../../../assets/Products/product1.png";
 import Ratings from "../Ratings/Index";
 
 const ProductCard = ({ Options = {} , data = {} }) => {
@@ -64,7 +63,7 @@ const ProductCard = ({ Options = {} , data = {} }) => {
             <Ratings rating={data?.rating}/>
           </div>
           <p className="font-popins font-semibold text-[14px] text-primaryBlack opacity-50">
-            ({data.reviews.length})
+            ({data.reviews?.length})
           </p>
         </div>
         {colorOptions && (

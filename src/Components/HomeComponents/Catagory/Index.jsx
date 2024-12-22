@@ -1,9 +1,9 @@
-import CatagoryItem from "../../CommonComponents/CatagoryItem/Index";
-import ProductLayout from "../../CommonComponents/ProductLayout/Index";
 import { CiMobile4 } from "react-icons/ci";
-import { PiMonitor ,PiGameControllerLight } from "react-icons/pi";
 import { IoWatchOutline } from "react-icons/io5";
 import { MdOutlineHeadphones } from "react-icons/md";
+import { PiGameControllerLight, PiMonitor } from "react-icons/pi";
+import CatagoryItem from "../../CommonComponents/CatagoryItem/Index";
+import ProductLayout from "../../CommonComponents/ProductLayout/Index";
 
 const Catagory = () => {
   const catagoryBrowse = [
@@ -59,7 +59,7 @@ const Catagory = () => {
     },
   ];
   return (
-    <div className="w-full border-b border-b-black30 pb-[70px]">
+    <div className="w-full border-b border-b-black30 pt-[80px] pb-[70px]">
       <ProductLayout
         Options={{
           title: "Categories",

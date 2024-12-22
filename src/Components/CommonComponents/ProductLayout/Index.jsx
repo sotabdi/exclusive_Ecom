@@ -1,9 +1,9 @@
-import TitleHead from "../TitleHeadComponent/Index";
-import Timer from "../Timer/Index";
-import { HiArrowSmallRight, HiArrowSmallLeft } from "react-icons/hi2";
-import ProductSkeleton from "../../../Halper/ProductSkeleton";
-import Slider from "react-slick";
 import { useRef } from "react";
+import { HiArrowSmallLeft, HiArrowSmallRight } from "react-icons/hi2";
+import Slider from "react-slick";
+import ProductSkeleton from "../../../Halper/ProductSkeleton";
+import Timer from "../Timer/Index";
+import TitleHead from "../TitleHeadComponent/Index";
 
 const ProductLayout = ({ Options = {} }) => {
   const {
