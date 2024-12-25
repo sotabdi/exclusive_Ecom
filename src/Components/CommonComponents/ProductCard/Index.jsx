@@ -10,7 +10,7 @@ const ProductCard = ({ Options = {} , data = {} }) => {
   const { price = true, colorOptions = false, discountBar = true } = Options; // default settings
   
   return (
-    <div className="w-full flex flex-col gap-y-4 cursor-pointer group px-[15px] pb-[60px] pt-[40px]">
+    <div className="w-full flex flex-col gap-y-4 cursor-pointer group px-[15px] pb-[40px]">
       <div className="w-full h-[250px] bg-secondaryWhite rounded flex justify-center items-center relative overflow-hidden">
         <div className="flex justify-between items-start p-3 absolute top-0 left-0 w-full">
           {data?.discountPercentage ? (

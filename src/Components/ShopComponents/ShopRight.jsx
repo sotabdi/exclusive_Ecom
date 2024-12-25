@@ -16,8 +16,8 @@ const ShopRight = () => {
   };
 
   return (
-    <div>
-      <div className="flex justify-end">
+    <div className="flex flex-col">
+      <div className="flex justify-end pb-[30px]">
         <div className="flex items-center gap-x-3">
           <p className="font-popins text-[16px] text-primaryBlack">Show :</p>
           <select

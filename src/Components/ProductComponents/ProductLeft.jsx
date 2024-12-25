@@ -18,12 +18,15 @@ const ProductLeft = () => {
   const handleMouseMove = (e) => {
     const box = imgBoxRef.current;
     const rect = box.getBoundingClientRect();
-    const x = Math.min(Math.max(((e.clientX - rect.left) / rect.width - 0.5) * 100, -50), 50); // Clamping between -50% and 50%
-    const y = Math.min(Math.max(((e.clientY - rect.top) / rect.height - 0.5) * 100, -50), 50); // Clamping between -50% and 50%
-    console.log(rect);
-    console.log(x);
-    console.log(y);
-    
+    const x = Math.min(
+      Math.max(((e.clientX - rect.left) / rect.width - 0.5) * 100, -50),
+      50
+    ); // Clamping between -50% and 50%
+    const y = Math.min(
+      Math.max(((e.clientY - rect.top) / rect.height - 0.5) * 100, -50),
+      50
+    ); // Clamping between -50% and 50%
+
     setPosition({ x, y });
   };
 
@@ -34,7 +37,7 @@ const ProductLeft = () => {
           {[...new Array(4)].map((_, index) => (
             <div
               key={index}
-              className="bg-secondaryWhite flex justify-center items-center py-3 cursor-pointer overflow-hidden rounded"
+              className="bg-secondaryWhite flex justify-center items-center h-[138px] cursor-pointer overflow-hidden rounded"
             >
               <img src={ThumImg} alt={ThumImg} className="object-cover" />
             </div>
@@ -57,6 +60,7 @@ const ProductLeft = () => {
               style={{
                 transform: `scale(${imgScale}) translate(${-position.x}%, ${-position.y}%)`,
                 transition: "transform 0.1s ease",
+                imageRendering: '-webkit-optimize-contrast'
               }}
             />
           </picture>

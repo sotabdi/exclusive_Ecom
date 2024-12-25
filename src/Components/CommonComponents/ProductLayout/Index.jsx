@@ -70,7 +70,7 @@ const ProductLayout = ({ Options = {} }) => {
             </button>
           ))}
       </div>
-      <div className="slider-container custom_slider">
+      <div className="slider-container custom_slider pt-[40px] pb-[20px]">
         <Slider ref={sliderRef} {...settings}>
           {(isLoading &&
             [...new Array(10)].map((_, index) => (

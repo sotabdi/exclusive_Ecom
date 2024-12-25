@@ -45,11 +45,11 @@ const ProductRight = () => {
         </div>
         <div className="flex gap-x-6 items-center">
           <p className="font-inter text-[20px] leading-5">Size:</p>
-          <div className="flex gap-x-4">
+          <div className="flex gap-x-4 items-center">
             {[...new Array(5)].map((_, index) => (
               <span
                 key={index}
-                className="inline-block font-popins font-medium text-[14px] leading-5 p-2 border border-[rgba(0,0,0,0.5)] rounded cursor-pointer hover:border-primaryRed hover:bg-primaryRed hover:text-primaryWhite transition-all"
+                className="inline-block font-popins font-medium text-[14px] leading-5 text-center py-[6px] w-[32px] border border-[rgba(0,0,0,0.5)] rounded cursor-pointer hover:border-primaryRed hover:bg-primaryRed hover:text-primaryWhite transition-all"
               >
                 XS
               </span>
