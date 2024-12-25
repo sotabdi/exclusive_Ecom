@@ -1,4 +1,3 @@
-import React from "react";
 import BreadCrums from "../../Components/CommonComponents/BreadCrums/Index";
 import ShopLeft from "../../Components/ShopComponents/ShopLeft";
 import ShopRight from "../../Components/ShopComponents/ShopRight";

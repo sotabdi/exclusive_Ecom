@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 const BreadCrums = () => {
   const { pathname } = useLocation();
   const route = pathname.split("/").filter((path) => path);
-  console.log(route);
 
   return (
     <div className="flex gap-x-3">
