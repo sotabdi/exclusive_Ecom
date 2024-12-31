@@ -7,7 +7,7 @@ const ProductLeft = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseEnter = () => {
-    setImgScale(1.5); // Zoom in on hover
+    setImgScale(2); // Zoom in on hover
   };
 
   const handleMouseLeave = () => {
