@@ -13,6 +13,9 @@ const Form = ({
   title = "ex: title"
 }) => {
   const [visible, setvisible] = useState(false);
+
+  console.log(userInfo);
+  
   return (
     <div className="flex flex-col gap-y-10">
       <div className="flex flex-col gap-y-6">

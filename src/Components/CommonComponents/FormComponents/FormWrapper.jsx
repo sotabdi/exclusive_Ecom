@@ -15,6 +15,7 @@ const FormWrapper = ({render,inputFeildArr}) => {
     setUserInfo({
       ...userInfo,
       [placeholder]: e.target.value,
+      ...(placeholder === 'checkbox'&& {[placeholder]: e.target.checked})
     });
     seterr({
       ...err,

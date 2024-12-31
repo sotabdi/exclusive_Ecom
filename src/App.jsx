@@ -8,6 +8,7 @@ import RootLayout from './Components/RootLayout/Index';
 import SignIn from "./Pages/auth/SignIn/Index";
 import Signup from "./Pages/auth/SignUp/Index";
 import Cart from "./Pages/Cart/Index";
+import Checkout from "./Pages/Checkout/Index";
 import Home from './Pages/Home/Index';
 import Product from "./Pages/Product/Index";
 import Shop from "./Pages/Shop/Index";
@@ -23,6 +24,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="/Signin" element={<SignIn/>}/>
       <Route path="/Wishlist" element={<Wishlist/>}/>
       <Route path="/Cart" element={<Cart/>}/>
+      <Route path="/Checkout" element={<Checkout/>}/>
     </Route>
   </Route>
 ))
