@@ -1,6 +1,10 @@
+const categoryModel = require("../model/category.model");
 const subCategoryModel = require("../model/subCategory.model");
 const { Response } = require("../utilities/apiResponse");
-const { uploadToCloudinary, deleteCloudinary } = require("../utilities/cloudinary");
+const {
+  uploadToCloudinary,
+  deleteCloudinary,
+} = require("../utilities/cloudinary");
 
 //
 // create new subcategory
@@ -39,6 +43,10 @@ const createSubCategory = async (req, res) => {
         .status(400)
         .json(new Response(400, "Failed to create subCategory", null, null));
     }
+
+    const findCategory = await categoryModel.findById(category);
+    findCategory.subCategory.push(createdsub._id)
+    await findCategory.save()
 
     return res
       .status(200)
@@ -108,7 +116,7 @@ const updateSubCategory = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, category } = req.body;
-  
+
     const findresult = await subCategoryModel.findById(id).populate("category");
     if (!findresult) {
       return res
@@ -117,21 +125,21 @@ const updateSubCategory = async (req, res) => {
     }
 
     let updatedOject = {};
-    if(name){
-      updatedOject.name = name
+    if (name) {
+      updatedOject.name = name;
     }
-    if(category){
-      updatedOject.category = category
+    if (category) {
+      updatedOject.category = category;
     }
 
-    if(req.files?.icon){
-      const oldImage = findresult.icon.split('/');
-      const imgId = oldImage[oldImage?.length-1].split('.').shift();
+    if (req.files?.icon) {
+      const oldImage = findresult.icon.split("/");
+      const imgId = oldImage[oldImage?.length - 1].split(".").shift();
 
       const deleteResult = await deleteCloudinary(imgId);
       const { path } = req.files?.icon[0];
 
-      const {secure_url} = await uploadToCloudinary(path);
+      const { secure_url } = await uploadToCloudinary(path);
 
       updatedOject.icon = secure_url;
     }
@@ -141,19 +149,18 @@ const updateSubCategory = async (req, res) => {
         .status(400)
         .json(new Response(400, "updated info needed", null, null));
     }
-    
-    const updatedResult = await findresult.set(updatedOject).save()
 
-    if(!updatedResult){
+    const updatedResult = await findresult.set(updatedOject).save();
+
+    if (!updatedResult) {
       return res
         .status(500)
         .json(new Response(500, "Failed to update subcategory", null, null));
     }
 
     return res
-        .status(200)
-        .json(new Response(200, "updated sub successfully", updatedResult, null));
-    
+      .status(200)
+      .json(new Response(200, "updated sub successfully", updatedResult, null));
   } catch (error) {
     return res
       .status(500)
@@ -161,17 +168,17 @@ const updateSubCategory = async (req, res) => {
   }
 };
 
-// 
+//
 // deleta subcategory
-const deleteSubCategory = async (req,res)=>{
+const deleteSubCategory = async (req, res) => {
   try {
-    const {id}=req.params
+    const { id } = req.params;
     const deleteResult = await subCategoryModel.findByIdAndDelete(id);
 
-    if(!deleteResult){
+    if (!deleteResult) {
       return res
-      .status(400)
-      .json(new Response(400, `unable to delete requested id`, null, null));
+        .status(400)
+        .json(new Response(400, `unable to delete requested id`, null, null));
     }
 
     // delete image from cloudinary
@@ -183,12 +190,24 @@ const deleteSubCategory = async (req,res)=>{
 
     return res
       .status(200)
-      .json(new Response(200, `delete sub category successfully`, deleteResult, null));
-
+      .json(
+        new Response(
+          200,
+          `delete sub category successfully`,
+          deleteResult,
+          null
+        )
+      );
   } catch (error) {
     return res
       .status(500)
       .json(new Response(500, `delete subcategory:${error}`, null, null));
   }
-}
-module.exports = { createSubCategory, getAllSubCategory, getSingleSubCategory, updateSubCategory,deleteSubCategory };
+};
+module.exports = {
+  createSubCategory,
+  getAllSubCategory,
+  getSingleSubCategory,
+  updateSubCategory,
+  deleteSubCategory,
+};
