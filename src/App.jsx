@@ -5,6 +5,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import RootLayout from './Components/RootLayout/Index';
+import Account from "./Pages/Account/Index";
 import SignIn from "./Pages/auth/SignIn/Index";
 import Signup from "./Pages/auth/SignUp/Index";
 import Cart from "./Pages/Cart/Index";
@@ -25,6 +26,7 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="/Wishlist" element={<Wishlist/>}/>
       <Route path="/Cart" element={<Cart/>}/>
       <Route path="/Checkout" element={<Checkout/>}/>
+      <Route path="/Account" element={<Account/>}/>
     </Route>
   </Route>
 ))

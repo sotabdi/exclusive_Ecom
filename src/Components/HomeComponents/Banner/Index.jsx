@@ -1,9 +1,11 @@
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import BannerImg from "../../../assets/BannerAssets/BannerImg.jpg";
+import "slick-carousel/slick/slick.css";
+import { useGetAllBannerQuery } from "../../../Features/Api/ExclusiveApi";
 
 const Banner = () => {
+  const { data, isLoading, isError } = useGetAllBannerQuery();
+
   const settings = {
     dots: true,
     infinite: true,
@@ -34,19 +36,23 @@ const Banner = () => {
   };
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-[500px] overflow-hidden">
       <div className="slider-container">
-        <Slider {...settings}>
-          {[...new Array(5)].map((_, index) => (
-            <div key={index}>
-              <img
-                src={BannerImg}
-                alt={BannerImg}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </Slider>
+        {isLoading ? (
+          <div className="w-full h-[500px] bg-gray-200 animate-pulse transition-all"></div>
+        ) : (
+          <Slider {...settings}>
+            {data?.data.map((item) => (
+              <div key={item._id}>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-[500px] object-cover"
+                />
+              </div>
+            ))}
+          </Slider>
+        )}
       </div>
     </div>
   );
