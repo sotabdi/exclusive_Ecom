@@ -1,63 +1,10 @@
-import { CiMobile4 } from "react-icons/ci";
-import { IoWatchOutline } from "react-icons/io5";
-import { MdOutlineHeadphones } from "react-icons/md";
-import { PiGameControllerLight, PiMonitor } from "react-icons/pi";
+import { useGetAllCategoryQuery } from "../../../Features/Api/ExclusiveApi";
 import CatagoryItem from "../../CommonComponents/CatagoryItem/Index";
 import ProductLayout from "../../CommonComponents/ProductLayout/Index";
 
-const Catagory = () => {
-  const catagoryBrowse = [
-    {
-      id: 1,
-      title: "Phone",
-      icon: <CiMobile4 />,
-    },
-    {
-      id: 2,
-      title: "Computer",
-      icon: <PiMonitor />,
-    },
-    {
-      id: 3,
-      title: "Samrt Watch",
-      icon: <IoWatchOutline />,
-    },
-    {
-      id: 4,
-      title: "Headphones",
-      icon: <MdOutlineHeadphones />,
-    },
-    {
-      id: 5,
-      title: "Gaming",
-      icon: <PiGameControllerLight />,
-    },
-    {
-      id: 6,
-      title: "Phone",
-      icon: <CiMobile4 />,
-    },
-    {
-      id: 7,
-      title: "Phone",
-      icon: <CiMobile4 />,
-    },
-    {
-      id: 8,
-      title: "Phone",
-      icon: <CiMobile4 />,
-    },
-    {
-      id: 9,
-      title: "Phone",
-      icon: <CiMobile4 />,
-    },
-    {
-      id: 10,
-      title: "Phone",
-      icon: <CiMobile4 />,
-    },
-  ];
+const Category = () => {
+  const {data, isLoading, isError} = useGetAllCategoryQuery()
+  
   return (
     <div className="w-full border-b border-b-black30 pt-[80px] pb-[70px]">
       <ProductLayout
@@ -66,7 +13,7 @@ const Catagory = () => {
           header: "Categories",
           ContentPlaceHolder: CatagoryItem,
           col: 6,
-          contentData: catagoryBrowse,
+          contentData: data?.data,
           isArrow: true,
           isbutton: false,
         }}
@@ -75,4 +22,4 @@ const Catagory = () => {
   );
 };
 
-export default Catagory;
+export default Category;

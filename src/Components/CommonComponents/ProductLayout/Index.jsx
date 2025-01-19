@@ -22,7 +22,7 @@ const ProductLayout = ({ Options = {} }) => {
     slideBy = col - 2,
     discountBar= true,
   } = Options;
-
+ 
   const sliderRef = useRef(null);
   const settings = {
     dots: false,
@@ -78,7 +78,7 @@ const ProductLayout = ({ Options = {} }) => {
             ))) ||
             (contentData &&
               contentData?.map((item) => (
-                <div key={item?.id}>
+                <div key={item?._id}>
                   {<ContentPlaceHolder data={item ? item : {}} Options={{discountBar: discountBar}}/>}
                 </div>
               )))}

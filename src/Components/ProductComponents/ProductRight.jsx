@@ -4,21 +4,24 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { TbTruckDelivery } from "react-icons/tb";
 import Ratings from "../CommonComponents/Ratings/Index";
 
-const ProductRight = () => {
+const ProductRight = ({productDetails}) => {
     const [quantity , setquantity] = useState(1);
+
+    console.log(productDetails);
+    
 
 
   return (
     <div>
       <div className="flex flex-col gap-y-4 border-b border-[rgba(0,0,0,0.5)]">
-        <h6 className="font-inter font-semibold text-[40px] text-primaryBlack leading-10">
-          Havic HV G-92 Gamepad
+        <h6 className="font-inter font-semibold text-[40px] text-primaryBlack leading-[40px]">
+          {productDetails?.title}
         </h6>
         <div className="flex items-center gap-x-4">
           <div className="flex gap-x-2">
-            <Ratings rating={4} />
+            <Ratings rating={productDetails?.rating} />
             <p className="font-popins text-[14px] text-[rgba(0,0,0,0.5)]">
-              (150 Reviews)
+              ({productDetails?.reviews.length})
             </p>
           </div>
           <span className="inline-block font-popins text-[14px] text-primaryBlack">
@@ -27,12 +30,10 @@ const ProductRight = () => {
           <p className="font-popins text-[14px] text-[#00FF66]">In Stock</p>
         </div>
         <h6 className="font-inter text-[24px] text-primaryBlack leading-6">
-          $192.00
+          {productDetails?.price}
         </h6>
         <p className="font-popins text-[14px] text-primaryBlack max-w-[400px] leading-[21px] pt-2 pb-6">
-          PlayStation 5 Controller Skin High quality vinyl with air channel
-          adhesive for easy bubble free install & mess free removal Pressure
-          sensitive.
+          {productDetails?.description}
         </p>
       </div>
       <div className="flex flex-col gap-y-6 py-6">

@@ -1,8 +1,8 @@
-import { useGetAllProductQuery } from "../../../Features/Api/ProductApi";
+import { useGetAllFlashProductQuery } from "../../../Features/Api/ExclusiveApi";
 import ProductCard from "../../CommonComponents/ProductCard/Index";
 import ProductLayout from "../../CommonComponents/ProductLayout/Index";
 const FlashSale = () => {
-  const { data, error, isLoading } = useGetAllProductQuery();
+  const { data, isLoading ,isError } = useGetAllFlashProductQuery();
 
   return (
     <div className=" border-b border-b-black30 pt-[140px] pb-[120px]">
@@ -14,7 +14,7 @@ const FlashSale = () => {
           title: "Todays",
           header: "Flash Sales",
           isArrow: true,
-          contentData: data?.products,
+          contentData: data?.data,
           isLoading,
         }}
       />

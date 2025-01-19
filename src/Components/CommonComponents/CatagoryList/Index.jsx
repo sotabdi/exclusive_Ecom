@@ -36,8 +36,18 @@ const CatagoryList = () => {
                 </div>
                 {item?.subCategory?.length > 0 &&
                   item.subCategory.map((sitem) => (
-                    <div key={sitem._id} className={`${isCurrent== item._id ? "block" : "hidden"} transition-all ease-in-out`}>
-                      <li>{sitem.name}</li>
+                    <div
+                      key={sitem._id}
+                      className={`transition-max-height ease-in-out duration-500 overflow-hidden ${
+                        isCurrent === item._id
+                          ? "max-h-[200px]"
+                          : "max-h-0"
+                      }`}
+                      style={{
+                        transition: "max-height 0.5s ease",
+                      }}
+                    >
+                      <li className="ps-3">{sitem.name}</li>
                     </div>
                   ))}
               </div>
