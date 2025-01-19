@@ -18,6 +18,12 @@ const userSchema = new Schema(
         ref: "subCategory",
       },
     ],
+    product: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "product",
+      },
+    ],
   },
   { timestamps: true }
 );

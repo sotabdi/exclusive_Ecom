@@ -12,6 +12,15 @@ const createFlashSale = async (req, res) => {
         .json(new Response(400, null, null, "Name or Product Missing"));
     }
 
+    // check if product already exist
+    const findResult = await flashSaleModel.findOne({product: product})
+
+    if(findResult){
+      return res
+        .status(400)
+        .json(new Response(400, null, null, "this product already in the list"));
+    }
+
     const createFlashSale = await flashSaleModel.create({
       name,
       product,

@@ -60,14 +60,19 @@ const productSchema = new Schema({
         trim: true
     },
     category:{
-        type: String,
-        trim: true
+        type: Schema.Types.ObjectId,
+        ref:'category'
+    },
+    subcategory:{
+        type: Schema.Types.ObjectId,
+        ref:'subCategory'
     },
     images:[{
         type: String,
         required: true,
         trim: true
     }]
+
 },{timestamps: true})
 
 const productModel = mongoose.model('product', productSchema);

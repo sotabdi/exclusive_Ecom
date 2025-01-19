@@ -43,7 +43,7 @@ const categoryController = async (req, res) => {
 // get all category
 const getCategoryController = async (_, res) => {
   try {
-    const allCategory = await categoryModel.find();
+    const allCategory = await categoryModel.find().populate('subCategory');
     if (!allCategory) {
       return res
         .status(500)
@@ -180,6 +180,8 @@ const deleteCategoryController = async (req, res) => {
           )
         );
     }
+    // delete all subcategory related this category
+  
 
     // delete image from cloudinary
     const { icon } = deleteResult;

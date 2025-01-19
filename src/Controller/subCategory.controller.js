@@ -45,8 +45,8 @@ const createSubCategory = async (req, res) => {
     }
 
     const findCategory = await categoryModel.findById(category);
-    findCategory.subCategory.push(createdsub._id)
-    await findCategory.save()
+    findCategory.subCategory.push(createdsub._id);
+    await findCategory.save();
 
     return res
       .status(200)
@@ -181,6 +181,9 @@ const deleteSubCategory = async (req, res) => {
         .json(new Response(400, `unable to delete requested id`, null, null));
     }
 
+    // delete from categorymodel
+    const findResult = await categoryModel.findById(id);
+    findResult.subCategory.pull(id)
     // delete image from cloudinary
     const { icon } = deleteResult;
     const iconUrl = icon?.split("/");
