@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Form = ({
   userInfo,
@@ -9,22 +10,19 @@ const Form = ({
   handleInput,
   handleSubmit,
   theme = "signin",
-  header = 'ex: header',
-  title = "ex: title"
+  header = "ex: header",
+  title = "ex: title",
+  loading
 }) => {
   const [visible, setvisible] = useState(false);
 
-  console.log(userInfo);
-  
   return (
     <div className="flex flex-col gap-y-10">
       <div className="flex flex-col gap-y-6">
         <h5 className="font-inter font-medium text-[36px] text-primaryBlack">
           {header}
         </h5>
-        <p className="font-popins text-[16px] text-primaryBlack">
-          {title}
-        </p>
+        <p className="font-popins text-[16px] text-primaryBlack">{title}</p>
       </div>
       <div className="flex flex-col gap-y-10">
         {inputFeildArr?.map((item, index) => (
@@ -46,7 +44,7 @@ const Form = ({
               {item.type === "password" && (
                 <span
                   className="inline-block absolute top-[50%] translate-y-[-50%] right-4 cursor-pointer"
-                  onClick={() => setvisible(!visible)}
+                  onClick={() => setvisible((prev)=>!prev)}
                 >
                   {visible ? <IoEyeOutline /> : <IoEyeOffOutline />}
                 </span>
@@ -62,19 +60,30 @@ const Form = ({
       </div>
       {theme === "signup" && (
         <div className="flex flex-col gap-y-4 justify-center items-center">
-          <button
+          {loading ? (<button
+            className="w-full bg-primaryRed rounded font-inter font-semibold text-[16px] text-primaryWhite py-4"
+          >
+            Loading
+          </button>):(<button
             className="w-full bg-primaryRed rounded font-inter font-semibold text-[16px] text-primaryWhite py-4"
             onClick={handleSubmit}
           >
             Create Account
-          </button>
+          </button>)}
           <button className="flex justify-center gap-x-2 items-center w-full border border-primaryBlack rounded font-inter font-semibold text-[16px] text-primaryBlack py-4">
             <span className="inline-block text-[24px]">
               <FcGoogle />
             </span>{" "}
             Sign up with Google
           </button>
-          <p className="pt-4 font-popins text-[16px] text-[rgba(0,0,0,0.7)]">Already have account? <span className="inline-block font-medium underline cursor-pointer">Log in</span></p>
+          <p className="pt-4 font-popins text-[16px] text-[rgba(0,0,0,0.7)]">
+            Already have account?{" "}
+            <Link to={'/signin'}>
+              <span className="inline-block font-medium underline cursor-pointer">
+                Log in
+              </span>
+            </Link>
+          </p>
         </div>
       )}
       {theme === "signin" && (

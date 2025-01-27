@@ -9,11 +9,12 @@ const ProductCard = ({ data = {}, Options = {} }) => {
   //   <ProductCard Options={{price: true, colorOptions: false, discountBar: true}} /> expected impimentation
 
   const { price = true, colorOptions = false, discountBar = true } = Options; // default settings
+console.log(data);
 
   return (
     <div className="w-full flex flex-col gap-y-4 cursor-pointer group px-[15px] pb-[40px]">
       <div className="w-full h-[250px] bg-secondaryWhite rounded flex justify-center items-center relative overflow-hidden">
-      <Link to={`/shop/${data.product._id}`}>
+      <Link to={`/shop/${data?._id}`}>
         <div className="flex justify-between items-start p-3 absolute top-0 left-0 w-full">
           {data?.discountPercentage ? (
             <span className="inline-block bg-primaryRed text-primaryWhite font-popins text-[12px] py-1 px-3 rounded">
@@ -34,8 +35,8 @@ const ProductCard = ({ data = {}, Options = {} }) => {
           <div>
             <picture>
               <img
-                src={data?.product.images[1]}
-                alt={data?.product.title}
+                src={data?.images[1]}
+                alt={data?.title}
                 className="w-full object-contain"
               />
             </picture>
@@ -47,19 +48,19 @@ const ProductCard = ({ data = {}, Options = {} }) => {
           </h4>
         </div>
       </div>
-      <Link to={`/shop/${data.product._id}`}>
+      <Link to={`/shop/${data?._id}`}>
         <div className="flex flex-col gap-y-2">
           <h3 className="font-popins text-[16px] font-medium text-primaryBlack w-full truncate">
-            {data?.product.title}
+            {data?.title}
           </h3>
           {price && (
             <div className="flex">
               <p className="font-popins text-[16px] font-medium text-primaryRed">
-                ${data?.product.price}
+                ${data?.price}
               </p>
               {data?.discountPercentage && (
                 <p className="font-popins text-[16px] font-medium text-primaryBlack opacity-50 line-through px-3">
-                  ${data?.product.price}
+                  ${data?.price}
                 </p>
               )}
             </div>
@@ -69,7 +70,7 @@ const ProductCard = ({ data = {}, Options = {} }) => {
               <Ratings rating={data?.rating} />
             </div>
             <p className="font-popins font-semibold text-[14px] text-primaryBlack opacity-50">
-              ({data?.product.reviews?.length})
+              ({data?.reviews?.length})
             </p>
           </div>
           {colorOptions && (

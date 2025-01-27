@@ -1,7 +1,12 @@
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import SignUp from "../../../assets/Signup/SignUp.png";
 import Form from "../../../Components/CommonComponents/FormComponents/Form";
 import FormWrapper from "../../../Components/CommonComponents/FormComponents/FormWrapper";
+import { infoToast, successToast } from "../../../Helpers/Toast";
 import { emailValidator, passValidator } from "../../../Utils/Validation";
-import SignUp from "../../../assets/Signup/SignUp.png";
+
 
 const Signup = () => {
   const inputArray = [
@@ -10,7 +15,11 @@ const Signup = () => {
     { id: 3, placeholder: "Password", type: "password" },
   ];
 
-  const handleSubmit = (userInfo, seterr) => {
+  const [loading, setloading] =useState(false)
+  const navigate = useNavigate()
+
+
+  const handleSubmit = async (userInfo, seterr) => {
     let haserr = false;
     const errors = {};
 
@@ -29,7 +38,29 @@ const Signup = () => {
     seterr(errors);
 
     if (!haserr) {
-      console.log("ready to go");
+      setloading(true)
+      try {
+        const result = await axios.post('http://localhost:3000/app/v1/auth/registration', {
+          firstName: userInfo.Name,
+          email: userInfo.Email,
+          password: userInfo.Password
+        })
+        if(result.statusText === "OK"){
+          infoToast('please check your mail to verify')
+          successToast('Registerd successfully')
+
+          setTimeout(()=>{
+            navigate(`/otp-verify/${userInfo.Email}`)
+          }, 5000)
+        }
+        setloading(false)
+        
+      } catch (error) {
+        console.log(error);
+        
+      }finally{
+        setloading(false)
+      }
     }
   };
   return (
@@ -53,6 +84,7 @@ const Signup = () => {
                   theme="signup"
                   header="Create an account"
                   title="Enter your details below"
+                  loading={loading}
                 />
               )}
               inputFeildArr={inputArray}

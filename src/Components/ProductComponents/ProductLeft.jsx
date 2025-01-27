@@ -7,6 +7,7 @@ const ProductLeft = ({ data, isLoading }) => {
     data?.length && setcurretImg(data[0]);
   }, [data]);
 
+
   return (
     <div className="grid grid-col-7 gap-x-[30px] items-start">
       <div className="col-span-2">

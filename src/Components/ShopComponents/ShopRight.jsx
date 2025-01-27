@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useGetAllProductQuery } from "../../Features/Api/ProductApi";
-import ProductSkeleton from "../../Halper/ProductSkeleton";
+import { useGetAllProductQuery } from "../../Features/Api/ExclusiveApi";
+import ProductSkeleton from "../../Helpers/ProductSkeleton";
 import ProductCard from "../CommonComponents/ProductCard/Index";
 const ShopRight = () => {
-  const { data, error, isLoading } = useGetAllProductQuery();
+  const { data, isError, isLoading } = useGetAllProductQuery();
   const [page, setpage] = useState(1);
   const [pagepershow, setpagepershow] = useState(9);
 
@@ -14,6 +14,7 @@ const ShopRight = () => {
   const handleSelect = (e) => {
     setpagepershow(e.target.value);
   };
+console.log(data?.data);
 
   return (
     <div className="flex flex-col">
@@ -42,7 +43,7 @@ const ShopRight = () => {
                   <ProductSkeleton />
                 </div>
               ))
-          : data?.products
+          : data?.data
               .slice(page * pagepershow - pagepershow, page * pagepershow)
               ?.map((products, index) => (
                 <div key={index} className="col-span-4">
@@ -83,7 +84,7 @@ const ShopRight = () => {
               </li>
             )}
             {[
-              ...new Array(Math.ceil(data?.products?.length / pagepershow)),
+              ...new Array(Math.ceil(data?.data?.length / pagepershow)),
             ].map((_, index) => (
               <li
                 key={index}
@@ -97,7 +98,7 @@ const ShopRight = () => {
                 {index + 1}
               </li>
             ))}
-            {page < data?.products?.length / pagepershow && (
+            {page < data?.data?.length / pagepershow && (
               <li>
                 <div
                   onClick={() => {

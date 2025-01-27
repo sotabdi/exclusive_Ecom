@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { HiArrowSmallLeft, HiArrowSmallRight } from "react-icons/hi2";
 import Slider from "react-slick";
-import ProductSkeleton from "../../../Halper/ProductSkeleton";
+import ProductSkeleton from "../../../Helpers/ProductSkeleton";
 import Timer from "../Timer/Index";
 import TitleHead from "../TitleHeadComponent/Index";
 
@@ -41,6 +41,9 @@ const ProductLayout = ({ Options = {} }) => {
   const next = () => {
     sliderRef.current.slickNext();
   };
+
+  console.log(contentData);
+  
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-end">
@@ -79,7 +82,7 @@ const ProductLayout = ({ Options = {} }) => {
             (contentData &&
               contentData?.map((item) => (
                 <div key={item?._id}>
-                  {<ContentPlaceHolder data={item ? item : {}} Options={{discountBar: discountBar}}/>}
+                  {<ContentPlaceHolder data={item ? item.product : {}} Options={{discountBar: discountBar}}/>}
                 </div>
               )))}
         </Slider>
