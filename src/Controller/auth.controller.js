@@ -17,7 +17,7 @@ const registration = async (req, res) => {
   try {
     // basic checking
     const { firstName, email, phone, password, address1, lastName } = req?.body;
-    if (!firstName || !email || !phone || !password || !address1) {
+    if (!firstName || !email || !password ) {
       return res
         .status(401)
         .json(new Response(401, "user credential missing", null, null));
@@ -29,11 +29,6 @@ const registration = async (req, res) => {
         .status(401)
         .json(new Response(401, "user email invalid", null, null));
     }
-    if (!numberValidator(phone)) {
-      return res
-        .status(401)
-        .json(new Response(401, "user number invalid", null, null));
-    }
     if (!passwordValidator(password)) {
       return res
         .status(401)
@@ -41,19 +36,17 @@ const registration = async (req, res) => {
     }
 
     //  have to check if user alreday exist in database
-    const userExist = await usermodel.find({
-      $or: [{ email: email }, { phone: phone }],
-    });
+    const userExist = await usermodel.findOne({email});
 
-    if (userExist?.length) {
+    if (userExist) {
       return res
         .status(403)
         .json(
           new Response(
             403,
-            "user already exist whit this phone number or email",
             null,
-            null
+            null,
+            "user already exist whit this phone number or email"
           )
         );
     }
@@ -62,23 +55,20 @@ const registration = async (req, res) => {
     const hashPass = await encriptPassword(password);
 
     const otp = generateOTP();
-    const mailInfo = await sendMail(email, otp);
+    const mailInfo = await sendMail(email, otp ,firstName);
 
     if (!mailInfo) {
       return res.json(
-        new Response(500, `node mailer error register complete`, null, null)
+        new Response(500,  null, null , `node mailer error`)
       );
     }
 
     const userinfo = await usermodel.create({
       firstName,
       email,
-      phone,
       password: hashPass,
-      address1,
       otp,
       otpExpire: new Date().getTime() + 2 * 60 * 1000,
-      ...(lastName && { lastName }),
     });
 
     return res
@@ -87,7 +77,7 @@ const registration = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json(new Response(400, `auth controller error ${error}`, null, null));
+      .json(new Response(400, null, null , `auth controller error ${error.messege}`));
   }
 };
 
@@ -183,10 +173,10 @@ const verifyOtp = async (req, res) => {
         { otp: null, otpExpire: null },
         { new: true }
       );
-      return res.status(200).json(new Response(200, "otp expire", null, null));
+      return res.status(401).json(new Response(401, "otp expired", null, null));
     }
-    if (findUser.otp !== otp) {
-      return res.status(400).json(new Response(400, "not matched", null, null));
+    if (findUser.otp.toString() !== otp.toString()) {
+      return res.status(401).json(new Response(401, "dosen't match", null, null));
     }
 
     const verifyUser = await usermodel
@@ -207,4 +197,30 @@ const verifyOtp = async (req, res) => {
   }
 };
 
-module.exports = { registration, login, verifyOtp };
+const resendOtp = async(req,res)=>{
+  try {
+    const {email} = req.body;
+    const result = await usermodel.findOne({email})
+
+    if(!result){
+      return res.status(400).json(new Response(400, null,null , 'user dose not exist'))
+    }
+
+    const otp = generateOTP();
+    const mailInfo = await sendMail(email, otp , result.firstName);
+
+    result.otp = otp
+    result.otpExpire = new Date().getTime() + 2 * 60 * 1000,
+
+    await result.save();
+
+    return res.status(200).json(new Response(200, 'Otp Send', result, null))
+
+  } catch (error) {
+    return res
+      .status(500)
+      .json(new Response(500, null, null , `verify controller error${error.message}`));
+  }
+}
+
+module.exports = { registration, login, verifyOtp, resendOtp };

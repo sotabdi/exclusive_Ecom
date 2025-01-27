@@ -1,4 +1,5 @@
 const nodemailer = require("nodemailer");
+const {verifyOTPTamplate} =require('../helpers/emailTamplates')
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -9,14 +10,14 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const sendMail = async (mail, otp) => {
+const sendMail = async (mail, otp, firstName) => {
   try {
     const info = await transporter.sendMail({
       from: "Exclusive", // sender address
       to: mail, // list of receivers
       subject: "Verification", // Subject line
       text: "Hello world?", // plain text body
-      html: `<h1>${otp}</h1>`, // html body
+      html: verifyOTPTamplate(otp, mail, firstName), // html body
     });
     return info.messageId;
   } catch (error) {
