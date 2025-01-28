@@ -10,6 +10,8 @@ import SignIn from "./Pages/auth/SignIn/Index";
 import Signup from "./Pages/auth/SignUp/Index";
 import Cart from "./Pages/Cart/Index";
 import Checkout from "./Pages/Checkout/Index";
+import ResetPassword from "./Pages/ForgotPass/Index";
+import ResetPasswordForm from "./Pages/ForgotPass/ResetPass/Index";
 import Home from './Pages/Home/Index';
 import OtpVerify from "./Pages/OtpVerify/Index";
 import Product from "./Pages/Product/Index";
@@ -29,6 +31,8 @@ const router = createBrowserRouter(createRoutesFromElements(
       <Route path="/Checkout" element={<Checkout/>}/>
       <Route path="/Account" element={<Account/>}/>
       <Route path="/otp-verify/:email" element={<OtpVerify/>}/>
+      <Route path="/reset-password"element={<ResetPassword/>}/>
+      <Route path="/reset-password/:token"element={<ResetPasswordForm/>}/>
     </Route>
   </Route>
 ))

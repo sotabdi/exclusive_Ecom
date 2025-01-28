@@ -1,5 +1,5 @@
 import axios from "axios";
-const instance = axios.create({
+const axiosinstance = axios.create({
     baseURL: import.meta.env.DOMAIN_URL
 });
 
